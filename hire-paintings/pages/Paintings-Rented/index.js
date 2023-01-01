@@ -5,7 +5,7 @@ import Table from "../../Components/Table.js";
 
 function fetch_hired_painting() {
   const [paintings_Rented, setPaintings_Rented] = useState([]);
-  const titles = ["create","update","delete","filter"]
+  const titles = ["add"]
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -22,8 +22,8 @@ function fetch_hired_painting() {
   return (
     <div>
       {" "}
-      <NavBar titles={titles}/>
-      <Table TableName={"PAINTINGS RENTED"} no_of_columns = {5} table_data = {paintings_Rented}/>
+      <NavBar titles={titles} route = {"/Paintings-Rented"}/>
+      <Table TableName={"PAINTINGS RENTED"} table_data = {paintings_Rented}/>
     </div>
   );
 }

@@ -5,7 +5,7 @@ import Table from "../../Components/Table.js";
 
 function fetch_customer() {
   const [customers, setCustomers] = useState([]);
-  const titles = ["create","update","delete","filter"]
+  const titles = ["Customer-Rentals","add","update","delete"]
   useEffect(() => {
     const fetchAll = async () => {
       const res = await axios({
@@ -20,8 +20,8 @@ function fetch_customer() {
 
   return (
     <div>
-      <NavBar titles={titles}/>
-      <Table TableName={"CUSTOMERS"} no_of_columns = {4} table_data = {customers}/>
+      <NavBar titles={titles} route = {"/Customer"} />
+      <Table TableName={"CUSTOMERS"} table_data = {customers}/>
     </div>
   );
 }

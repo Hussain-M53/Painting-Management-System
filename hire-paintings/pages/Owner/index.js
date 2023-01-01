@@ -5,7 +5,7 @@ import Table from "../../Components/Table.js";
 
 function fetch_owner() {
   const [owners, setOwners] = useState([]);
-  const titles = ["create","update","delete","filter"]
+  const titles = ["Return-Report","add","update","delete"]
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -21,8 +21,8 @@ function fetch_owner() {
 
   return (
     <div>
-      <NavBar titles={titles}/>
-      <Table TableName={"OWNERS"} no_of_columns = {4} table_data = {owners}/>
+      <NavBar titles={titles} route = {"/Owner"}/>
+      <Table TableName={"OWNERS"} table_data = {owners}/>
     </div>
   );
 }

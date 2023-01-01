@@ -5,7 +5,7 @@ import Table from "../../Components/Table.js";
 
 function fetch_artist() {
   const [artists, setArtists] = useState([]);
-  const titles = ["create","update","delete","filter"]
+  const titles = ["Artist-Report","add","update","delete"]
 
   useEffect(() => {
     const fetchAll = async () => {
@@ -21,9 +21,8 @@ function fetch_artist() {
 
   return (
     <div>
-      <NavBar titles={titles}/>
-
-      <Table TableName={"ARTISTS"} no_of_columns = {5} table_data = {artists}/>
+      <NavBar titles={titles} route = {"/Artist"}/>
+      <Table TableName={"ARTISTS"} table_data = {artists}/>
     </div>
   );
 }
