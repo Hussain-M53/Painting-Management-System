@@ -44,7 +44,7 @@ function update() {
             <div className="w-44">
               <input
                 ref={id}
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 type="text"
                 placeholder="ID"
               />
@@ -55,7 +55,7 @@ function update() {
             <div className="w-44">
               <input
                 ref={title}
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none "
                 type="text"
                 placeholder="Title"
               />
@@ -67,7 +67,7 @@ function update() {
               <input
                 ref={theme}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Theme"
               />
             </div>
@@ -78,7 +78,7 @@ function update() {
               <input
                 ref={rental_price}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Price"
               />
             </div>
@@ -89,7 +89,7 @@ function update() {
               <input
                 ref={artist_id}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Arist ID"
               />
             </div>
@@ -100,14 +100,14 @@ function update() {
               <input
                 ref={owner_id}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Owner ID"
               />
             </div>
           </div>
           <div>
             <button
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
               onClick={() => push_data_to_db()}
             >
               Update Painting

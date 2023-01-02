@@ -52,3 +52,10 @@ CREATE TABLE Paintings_Rented (
     FOREIGN KEY (painting_id) REFERENCES Paintings(painting_id),
     PRIMARY KEY (customer_id, painting_id)
 );
+
+CREATE TABLE Paintings_Rented (
+    painting_id VARCHAR2(255),
+    return_date DATE NOT NULL,
+    FOREIGN KEY (painting_id) REFERENCES Paintings(painting_id),
+    PRIMARY KEY (painting_id)
+);

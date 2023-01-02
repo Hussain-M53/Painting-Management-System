@@ -39,7 +39,7 @@ function add() {
             <div className="w-44">
               <input
                 ref={c_id}
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 type="text"
                 placeholder="Customer ID"
               />
@@ -51,7 +51,7 @@ function add() {
               <input
                 ref={p_id}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Painting ID"
               />
             </div>
@@ -61,9 +61,9 @@ function add() {
             <div className="w-44">
               <input
                 ref={hire_date}
-                type="date"
-                className="px-2 py-1 rounded-sm"
-                placeholder="Hire Date"
+                type="text"
+                className="px-2 py-1 rounded-sm focus:outline-none"
+                placeholder="dd-mm-yyyy"
               />
             </div>
           </div>
@@ -72,16 +72,16 @@ function add() {
             <div className="w-44">
               <input
                 ref={due_date_back}
-                type="date"
-                className="px-2 py-1 rounded-sm"
-                placeholder="Due Date Back"
+                type="text"
+                className="px-2 py-1 rounded-sm focus:outline-none"
+                placeholder="dd-mm-yyyy"
               />
             </div>
           </div>
           <div>
             <button
               onClick={() => push_data_to_db()}
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
             >
               Hire Painting
             </button>

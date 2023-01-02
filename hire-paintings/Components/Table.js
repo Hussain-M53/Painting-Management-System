@@ -1,8 +1,9 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TableHeader from "./TableHeader";
+import Table_Data from "./Table_Data";
 
 function Table({ TableName, table_data }) {
-  let filter = false;
+  const [t_data, setData] = useState(table_data);
   const table_type = [
     ["Customer ID", "Customer Name", "Customer Address", "Category ID"],
     ["Owner ID", "Onwer Name", "Owner Address", "Owner Contact"],
@@ -62,63 +63,46 @@ function Table({ TableName, table_data }) {
       return table_type[5];
     }
   };
-  const get_data = (data, i) => {
-    if (
-      (TableName == "PAINTINGS RENTED" && (i == 2 || i == 3)) ||
-      (TableName == "PAINTINGS" && i == 8)
-    ) {
-      return data[i].split("T")[0];
-    } else if (data[i] != undefined) {
-      return data[i];
+
+  const handle_event = (e) => {
+    e.preventDefault();
+    if (table_data?.filter((row) => row[0] == input_ref.current.value).length > 0) {
+      setData(table_data?.filter((row) => row[0] == input_ref.current.value));
     } else {
-      return "----";
+      setData(table_data);
     }
   };
-
-  const handle_event = () => {
-    filter = !filter;
-    console.log(input_ref.current.value);
-  };
-  useEffect(() => {}, [filter, table_data]);
+  useEffect(() => {
+    console.log("passed data ",table_data)
+    console.log("load data :", t_data);
+  },[]);
 
   return (
     <div className="justify-end  mx-16 my-12 mb-10 border-gray-100 border-2 p-3">
-      <div className="text-center  text-zinc-900 text-5xl font-serif font-bold mt-5 ">
+      <div className="text-center  text-zinc-900 text-4xl font-serif font-bold mt-5 ">
         {TableName}
       </div>
       <div className=" text-xl font-serif mb-6 flex place-content-end">
         <div>
           <input
             ref={input_ref}
-            className="rounded-md border-2 pl-4 py-1 mr-2 text-gray-500"
+            className="rounded-md border-2 px-2 py-1 mr-2 text-gray-500 focus:outline-none"
             type={"text"}
             required
             placeholder={`${table()[0]}`}
           />
         </div>
         <button
-          onClick={() => handle_event()}
-          className="bg-gray-200 text-2xl font-mono font-semibold rounded-md px-8 text-gray-500"
+          onClick={(e) => handle_event(e)}
+          className="bg-gray-200 text-2xl font-mono rounded-md px-8 text-gray-400 hover:text-violet-400"
         >
-          filter
+          Search
         </button>
       </div>
       <div className="flex justify-around bg-black my-1 ">
         <TableHeader columns={table()} />
       </div>
-      {table_data.map((data) => {
-        return (
-          <div className="flex border-b-4 justify-around ">
-            {table().map((row, i) => {
-              return (
-                <div className="w-56 text-center py-1 mr-2 font-mono">
-                  {get_data(data, i)}
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+      <Table_Data TableName={TableName} t_data={t_data} />
     </div>
   );
 }

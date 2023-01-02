@@ -5,7 +5,7 @@ import Table from "../../Components/Table.js";
 
 function fetch_painting() {
   const [paintings, setPaintings] = useState([]);
-  const titles = ["available","add","update","delete"]
+  const titles = ["add","update","delete"]
 
   useEffect(() => {
     const fetchAll = async () => {

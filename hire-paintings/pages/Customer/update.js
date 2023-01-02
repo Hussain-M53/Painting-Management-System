@@ -41,7 +41,7 @@ function update() {
               <input
                 ref={id}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="ID"
               />
             </div>
@@ -52,7 +52,7 @@ function update() {
               <input
                 ref={name}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Name"
               />
             </div>
@@ -63,14 +63,14 @@ function update() {
               <input
                 ref={address}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Address"
               />
             </div>
           </div>
           <div>
             <button
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
               onClick={() => push_data_to_db()}
             >
               Update Customer

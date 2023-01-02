@@ -40,7 +40,7 @@ function create() {
               <input
                 ref={name}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Name"
               />
             </div>
@@ -51,14 +51,14 @@ function create() {
               <input
                 ref={address}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Address"
               />
             </div>
           </div>
           <div>
             <button
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
               onClick={() => push_data_to_db()}
             >
               Add Customer

@@ -40,7 +40,7 @@ function update() {
             <div className="w-44">Artist ID : </div>
             <div className="w-44">
               <input
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 ref={id}
                 type="text"
                 placeholder="ID"
@@ -51,7 +51,7 @@ function update() {
             <div className="w-44">Artist Name : </div>
             <div className="w-44">
               <input
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 ref={name}
                 type="text"
                 placeholder="Name"
@@ -63,7 +63,7 @@ function update() {
             <div className="w-44">
               <input
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 ref={cob}
                 placeholder="Country Of Birth"
               />
@@ -74,7 +74,7 @@ function update() {
             <div className="w-44">
               <input
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 ref={yob}
                 placeholder="Year Of Birth "
               />
@@ -85,7 +85,7 @@ function update() {
             <div className="w-44">
               <input
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 ref={yod}
                 placeholder="Year Of Death"
               />
@@ -93,7 +93,7 @@ function update() {
           </div>
           <div>
             <button
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
               onClick={() => push_data_to_db()}
             >
               Update Artist

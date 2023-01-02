@@ -66,8 +66,7 @@ function Report_Table({ TableName, url }) {
   const get_data = (data, i) => {
     if (TableName == "Customer-Rental" && (i == 3 || i == 4)) {
       return data.split("T")[0];
-    } 
-     else if (data != undefined) {
+    } else if (data != undefined) {
       return data;
     } else {
       return "----";
@@ -79,7 +78,11 @@ function Report_Table({ TableName, url }) {
       method: "get",
       url: url + "" + input_ref.current.value,
     });
-    setTable_data(res.data);
+    if (res.status == 404) {
+      alert(res.data);
+    } else {
+      setTable_data(res.data)
+    }
   };
 
   useEffect(() => {}, [table_data]);
@@ -96,6 +99,7 @@ function Report_Table({ TableName, url }) {
             className="rounded-md border-2 pl-4 py-1 mr-2 text-gray-500"
             type={"text"}
             required
+            placeholder={table_top()[0]}
           />
         </div>
         <button
@@ -110,7 +114,7 @@ function Report_Table({ TableName, url }) {
           <Top_Header columns={table_top()} />
         </div>
         <div className="flex mb-10 justify-around ">
-          {Object.keys(table_data)?.map((data,i) => {
+          {Object.keys(table_data)?.map((data, i) => {
             if (data != "paintings") {
               return (
                 <div className="w-56 text-center py-1 mr-2 font-mono">
@@ -132,10 +136,10 @@ function Report_Table({ TableName, url }) {
                 {table_data[data]?.map((row) => {
                   return (
                     <div className="flex border-b-4 justify-around ">
-                      {row?.map((val,i) => {
+                      {row?.map((val, i) => {
                         return (
                           <div className="w-56 text-center py-1 mr-2 font-mono">
-                            {get_data(val,i)}
+                            {get_data(val, i)}
                           </div>
                         );
                       })}

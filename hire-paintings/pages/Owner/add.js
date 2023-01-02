@@ -27,7 +27,7 @@ function add() {
   };
   return (
     <>
-      <Link href="Owner">
+      <Link href="/Owner">
         <div className="text-5xl font-light font-serif ml-5 mt-5">
           MasterPieces .Ltd
         </div>
@@ -40,7 +40,7 @@ function add() {
               <input
                 ref={name}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Name"
               />
             </div>
@@ -51,7 +51,7 @@ function add() {
               <input
                 ref={address}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Address"
               />
             </div>
@@ -62,14 +62,14 @@ function add() {
               <input
                 ref={contact}
                 type="text"
-                className="px-2 py-1 rounded-sm"
+                className="px-2 py-1 rounded-sm focus:outline-none"
                 placeholder="Contact Info"
               />
             </div>
           </div>
           <div>
             <button
-              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white"
+              className="font-mono px-5 py-3 bg-zinc-500 mt-5 mb-10 text-white hover:text-violet-400"
               onClick={() => push_data_to_db()}
             >
               Add Owner

@@ -107,6 +107,7 @@ exports.retrieve_artists = async (req, res) => {
 };
 
 exports.retrieve_artist_paintings_report = async (req, res) => {
+  let data;
   await OracleDB.getConnection(credentials, (err, connection) => {
     if (err) {
       res.json(err.message);
@@ -137,6 +138,7 @@ exports.retrieve_artist_paintings_report = async (req, res) => {
       (err, result) => {
         if (err) {
           res.json(err.message);
+          return;
         } else {
           data = result.outBinds;
         }
@@ -158,8 +160,10 @@ exports.retrieve_artist_paintings_report = async (req, res) => {
         if (err) {
           res.json(err.message);
         } else {
-          data.paintings = result.implicitResults.at(0);
-          res.json(data);
+          if (data) {
+            data.paintings = result.implicitResults.at(0);
+            res.json(data);
+          }
         }
       }
     );

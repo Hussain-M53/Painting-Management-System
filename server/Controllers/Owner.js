@@ -101,6 +101,7 @@ exports.retrieve_owners = async (req, res) => {
 };
 
 exports.retrieve_owners_return_report = async (req, res) => {
+  let data;
   await OracleDB.getConnection(credentials, (err, connection) => {
     if (err) {
       res.json(err.message);
@@ -126,12 +127,12 @@ exports.retrieve_owners_return_report = async (req, res) => {
       (err, result) => {
         if (err) {
           res.json(err.message);
+          return;
         } else {
-          res.json(result.outBinds);
+          data = result.outBinds;
         }
       }
     );
-  });
 
   sql = `BEGIN return_to_owners_report(:o_id);END;`;
 
@@ -148,11 +149,14 @@ exports.retrieve_owners_return_report = async (req, res) => {
       if (err) {
         res.json(err.message);
       } else {
-        data.paintings = result.implicitResults.at(0);
-        res.json(data);
+        if (data) {
+          data.paintings = result.implicitResults.at(0);
+          res.json(data);
+        }
       }
     }
   );
+});
 };
 
 exports.delete_owner = async (req, res) => {

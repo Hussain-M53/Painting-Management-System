@@ -6,29 +6,29 @@ exports.insert_paintings_rented = async (req, res) => {
     if (err) {
       res.json(err.message);
     }
-    // let sql = `BEGIN get_paintings_rental_details(:p_id);END;`;
+    let sql = `BEGIN get_paintings_rental_details(:p_id);END;`;
 
-    // connection.execute(
-    //   sql,
-    //   {
-    //     p_id: {
-    //       dir: OracleDB.BIND_IN,
-    //       val: req.body.painting_id,
-    //       type: OracleDB.VARCHAR2,
-    //     },
-    //   },
-    //   (err, result) => {
-    //     if (err) {
-    //       res.json(err.message);
-    //     } else {
-    //         if (result.implicitResults.at(0).at(0).at(5) == "N") {
-    //           res.json(
-    //             `Painting id:${req.body.painting_id} is not available for rent`
-    //           );
-    //       }
-    //     }
-    //   }
-    // );
+    connection.execute(
+      sql,
+      {
+        p_id: {
+          dir: OracleDB.BIND_IN,
+          val: req.body.painting_id,
+          type: OracleDB.VARCHAR2,
+        },
+      },
+      (err, result) => {
+        if (err) {
+          res.json(err.message);
+        } else {
+          if (result.implicitResults.at(0).at(5) == "N") {
+            res.json(
+              `Painting id:${req.body.painting_id} is not available for rent`
+            );
+          }
+        }
+      }
+    );
 
     sql = `BEGIN add_paintings_rented(
         :customer_id,
@@ -90,7 +90,8 @@ exports.return_paintings_rented = async (req, res) => {
   });
 };
 
-exports.retrieve_rental_report = async (req, res) => {
+exports.retrieve_rental_report = async (req, res, next) => {
+  let data;
   await OracleDB.getConnection(credentials, (err, connection) => {
     if (err) {
       res.json(err.message);
@@ -123,6 +124,7 @@ exports.retrieve_rental_report = async (req, res) => {
       (err, result) => {
         if (err) {
           res.json(err.message);
+          next();
         } else {
           data = result.outBinds;
         }
@@ -143,8 +145,10 @@ exports.retrieve_rental_report = async (req, res) => {
         if (err) {
           res.json(err.message);
         } else {
-          data.paintings = result.implicitResults.at(0);
-          res.json(data);
+          if (data) {
+            data.paintings = result.implicitResults.at(0);
+            res.json(data);
+          }
         }
       }
     );
