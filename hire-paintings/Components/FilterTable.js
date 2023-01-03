@@ -2,10 +2,10 @@ import { useRouter } from "next/router";
 import React, { useRef } from "react";
 import TableHeader from "./TableHeader";
 
-function Table({ TableName, table_data }) {
+function FilterTable({ Path, TableName, table_data }) {
   const router = useRouter();
   const table_type = [
-    ["Customer ID", "Customer Name", "Customer Address", "Category ID"],
+    ["Customer ID", "Customer Name", "Customer Address", "Category ID","Category Description","Category Discount"],
     ["Owner ID", "Onwer Name", "Owner Address", "Owner Contact"],
     [
       "Artist ID",
@@ -25,13 +25,6 @@ function Table({ TableName, table_data }) {
       "Available",
       "Inserted At",
     ],
-    [
-      "Customer ID",
-      "Painting ID",
-      "Hire Date",
-      "Due Date Back",
-      "Return Status",
-    ],
   ];
   const input_ref = useRef();
   const table = () => {
@@ -46,10 +39,7 @@ function Table({ TableName, table_data }) {
     }
   };
   const get_data = (data, i) => {
-    if (
-      (TableName == "PAINTINGS RENTED" && (i == 2 || i == 3)) ||
-      (TableName == "PAINTINGS" && i == 8)
-    ) {
+    if (TableName == "PAINTINGS" && i == 8) {
       return data.split("T")[0];
     } else if (data != undefined) {
       return data;
@@ -59,16 +49,13 @@ function Table({ TableName, table_data }) {
   };
   const handle_event = (e) => {
     e.preventDefault();
-    if (
-      table_data?.filter((row) => row[0] == input_ref.current.value).length > 0
-    ) {
-      router.push({
-        pathname: `${router.pathname}/${input_ref.current.value}`,
-        query: {
-          id: input_ref.current.value,
-        },
-      });
-    }
+
+    router.push({
+      pathname: `${input_ref.current.value}`,
+      query: {
+        id: input_ref.current.value,
+      },
+    });
   };
 
   return (
@@ -96,24 +83,17 @@ function Table({ TableName, table_data }) {
       <div className="flex justify-around bg-black my-1 ">
         <TableHeader columns={table()} />
       </div>
-      {table_data?.map((row) => {
-        return (
-          <div className="flex border-b-4 justify-around ">
-            {row?.map((data, i) => {
-              return (
-                <div
-                  key={data}
-                  className="w-56 text-center py-1 mr-2 font-mono"
-                >
-                  {get_data(data, i)}
-                </div>
-              );
-            })}
-          </div>
-        );
-      })}
+      <div className="flex border-b-4 justify-around ">
+        {Object.values(table_data)?.map((data, i) => {
+          return (
+            <div key={i} className="w-56 text-center py-1 mr-2 font-mono">
+              {get_data(data, i)}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
 
-export default Table;
+export default FilterTable;

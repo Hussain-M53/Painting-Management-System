@@ -65,9 +65,10 @@ exports.retrieve_painting = async (req, res) => {
         :p_theme,
         :p_rental_price,
         :p_artist_id,
-        :a_artist_name,
         :p_owner_id,
-        :o_owner_name
+        :p_amount_paid_to_owner,
+        :p_available,
+        :p_Inserted_At
       );END;`;
     connection.execute(
       sql,
@@ -81,9 +82,10 @@ exports.retrieve_painting = async (req, res) => {
         p_theme: { dir: OracleDB.BIND_OUT, type: OracleDB.VARCHAR2 },
         p_rental_price: { dir: OracleDB.BIND_OUT, type: OracleDB.NUMBER },
         p_artist_id: { dir: OracleDB.BIND_OUT, type: OracleDB.VARCHAR2 },
-        a_artist_name: { dir: OracleDB.BIND_OUT, type: OracleDB.VARCHAR2 },
         p_owner_id: { dir: OracleDB.BIND_OUT, type: OracleDB.VARCHAR2 },
-        o_owner_name: { dir: OracleDB.BIND_OUT, type: OracleDB.VARCHAR2 }
+        p_amount_paid_to_owner: { dir: OracleDB.BIND_OUT, type: OracleDB.NUMBER },
+        p_available: { dir: OracleDB.BIND_OUT, type: OracleDB.CHAR },
+        p_Inserted_At: { dir: OracleDB.BIND_OUT, type: OracleDB.DATE },
       },
       (err, result) => {
         if (err) {

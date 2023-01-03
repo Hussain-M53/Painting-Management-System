@@ -38,6 +38,9 @@ CREATE TABLE Paintings(
     rental_price INT NOT NULL,
     artist_id VARCHAR2(255) NOT NULL,
     owner_id VARCHAR2(255) NOT NULL,
+    amount_paidto_owner Number,
+    available CHAR,
+    inserted_at DATE,
     FOREIGN KEY (artist_id) REFERENCES Artist(artist_id),
     FOREIGN KEY (owner_id) REFERENCES Owner(owner_id)
 );

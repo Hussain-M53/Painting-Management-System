@@ -160,34 +160,36 @@ create or replace PROCEDURE get_painting_details (
    p_theme OUT paintings.theme % type,
    p_rental_price OUT paintings.rental_price % type,
    p_artist_id OUT paintings.artist_id % type,
-   a_artist_name OUT artist.artist_name % type,
    p_owner_id OUT paintings.owner_id  % type,
-   o_owner_name OUT owner.owner_name % type
+   p_amount_paid_to_owner OUT paintings.amount_paidto_owner % type,
+   p_available OUT paintings.available % type,
+   p_inserted_at OUT paintings.inserted_at % type
 ) IS BEGIN
 select
-    p.painting_id,
-    p.painting_title,
-    p.theme,
-    p.rental_price,
-    p.artist_id,
-    a.artist_name,
-    p.owner_id,
-    o.owner_name
+    painting_id,
+    painting_title,
+    theme,
+    rental_price,
+    artist_id,
+    owner_id,
+    amount_paidto_owner,
+    available,
+    inserted_at
     INTO
     p_id,
     p_title,
     p_theme,
     p_rental_price,
     p_artist_id,
-    a_artist_name,
     p_owner_id,
-    o_owner_name
+    p_amount_paid_to_owner,
+    p_available,
+    p_inserted_at
 FROM
-   PAINTINGS p inner join Artist a on p.artist_id = a.artist_id inner join OWNER o on o.owner_id = p.owner_id
+   PAINTINGS p
 where
    p.painting_id = p_id;
 END;
-
 
 create or replace PROCEDURE get_paintings_rental_details ( p_id IN paintings.painting_id % type) IS 
 paintings_rented_rows SYS_REFCURSOR;

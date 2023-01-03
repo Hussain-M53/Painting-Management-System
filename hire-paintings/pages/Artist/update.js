@@ -12,7 +12,7 @@ function update() {
   const yod = useRef();
 
   const push_data_to_db = async () => {
-    axios
+    await axios
       .put("/Artist/update", {
         artist_id: id.current.value,
         artist_name: name.current.value,

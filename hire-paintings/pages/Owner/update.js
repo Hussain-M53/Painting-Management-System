@@ -13,7 +13,7 @@ function update() {
   const push_data_to_db = async () => {
     axios
       .put("/Owner/update", {
-        owner_id: name.current.value,
+        owner_id: id.current.value,
         owner_name: name.current.value,
         owner_address: address.current.value,
         owner_telephone: contact.current.value,
